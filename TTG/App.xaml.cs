@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using TTG.Models;
 
 namespace TTG
 {
@@ -13,5 +14,6 @@ namespace TTG
     /// </summary>
     public partial class App : Application
     {
+        public MainApp _app = new MainApp();
     }
 }
