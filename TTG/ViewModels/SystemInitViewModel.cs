@@ -11,12 +11,8 @@ namespace TTG.ViewModels
     {
         public SystemInitViewModel()
         {
-            SetText();
         }
-        private HMot _hMot;
-        private HIO _hIO;
-        private HCHR _hCHR;
-        private string _initIO;
+        private static string _initIO;
         public string InitIO
         {
             get { return _initIO; }
@@ -29,7 +25,7 @@ namespace TTG.ViewModels
                 }
             }
         }
-        private string _initMot;
+        private static string _initMot;
         public string InitMot
         {
             get { return _initMot; }
@@ -42,7 +38,7 @@ namespace TTG.ViewModels
                 }
             }
         }
-        private string _initCHR;
+        private static string _initCHR;
         public string InitCHR
         {
             get { return _initCHR; }
@@ -55,13 +51,9 @@ namespace TTG.ViewModels
                 }
             }
         }
-        private void SetText()
+        public void SetText(bool bInitIO, bool bInitMot, bool bInitCHR)
         {
-            _hMot = new HMot();
-            _hIO = new HIO();
-            _hCHR = new HCHR();
-
-            if (_hIO.IsInit)
+            if (bInitIO)
             {
                 InitIO = "I/O Board Init. Completed ...";
             }
@@ -69,7 +61,7 @@ namespace TTG.ViewModels
             {
                 InitIO = "I/O Board Init. Failed ...";
             }
-            if (_hMot.IsInit)
+            if (bInitMot)
             {
                 InitMot = "Motion Board Init. Completed...";
             }
@@ -77,7 +69,7 @@ namespace TTG.ViewModels
             {
                 InitMot = "Motion Board Init. Failed ...";
             }
-            if (_hCHR.IsInit)
+            if (bInitCHR)
             {
                 InitCHR = "Sensor Init.Completed...";
             }

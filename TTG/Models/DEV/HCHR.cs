@@ -11,9 +11,8 @@ namespace TTG.Models
         uint CHRHandle;
         public HCHR()
         {
-            Initialize();
         }
-        private void Initialize()
+        public void Initialize()
         {
             if (!_isInit)
                 initLibrary();
@@ -27,18 +26,25 @@ namespace TTG.Models
         {
             bool bConnect = false;
             _isInit = false;
-            int DeviceType = TCHRDLLFunctionWrapper.CHR_2Gen_Device;
-            string strConInfo = "IP:192.168.170.2";
-
-            int nTemp;
-            bConnect = TCHRDLLFunctionWrapper.OpenConnection(strConInfo, DeviceType, out nTemp) == 0;
-            if (bConnect)
+            try
             {
-                CHRHandle = Convert.ToUInt32(nTemp);
-                SetupDevice();
-                _isInit = true;
+                int DeviceType = TCHRDLLFunctionWrapper.CHR_2Gen_Device;
+                string strConInfo = "IP:192.168.170.2";
+
+                int nTemp;
+                bConnect = TCHRDLLFunctionWrapper.OpenConnection(strConInfo, DeviceType, out nTemp) == 0;
+                if (bConnect)
+                {
+                    CHRHandle = Convert.ToUInt32(nTemp);
+                    SetupDevice();
+                    _isInit = true;
+                }
+                else
+                {
+                    _isInit = false;
+                }
             }
-            else
+            catch (Exception e)
             {
                 _isInit = false;
             }

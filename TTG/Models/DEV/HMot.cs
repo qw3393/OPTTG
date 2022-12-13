@@ -10,9 +10,8 @@ namespace TTG.Models
     {
         public HMot()
         {
-            Initialize();
         }
-        private void Initialize()
+        public void Initialize()
         {
             if (!_isInit)
                 initLibrary();
@@ -25,19 +24,26 @@ namespace TTG.Models
         private void initLibrary()
         {
             _isInit = false;
-            //++ AXL(AjineXtek Library)을 사용가능하게 하고 장착된 보드들을 초기화합니다.
-            uint uAxlOpen = CAXL.AxlOpen(7);
-            if (uAxlOpen != (uint)AXT_FUNC_RESULT.AXT_RT_SUCCESS && uAxlOpen != (uint)AXT_FUNC_RESULT.AXT_RT_OPEN_ALREADY)
+            try
             {
-                return;
+                //++ AXL(AjineXtek Library)을 사용가능하게 하고 장착된 보드들을 초기화합니다.
+                uint uAxlOpen = CAXL.AxlOpen(7);
+                if (uAxlOpen != (uint)AXT_FUNC_RESULT.AXT_RT_SUCCESS && uAxlOpen != (uint)AXT_FUNC_RESULT.AXT_RT_OPEN_ALREADY)
+                {
+                    return;
+                }
+                String szFilePath = "MotionDefault.mot";
+                //++ 지정한 Mot파일의 설정값들로 모션보드의 설정값들을 일괄변경 적용합니다.
+                if (CAXM.AxmMotLoadParaAll(szFilePath) != (uint)AXT_FUNC_RESULT.AXT_RT_SUCCESS)
+                {
+                    return;
+                }
+                _isInit = true;
             }
-            String szFilePath = "MotionDefault.mot";
-            //++ 지정한 Mot파일의 설정값들로 모션보드의 설정값들을 일괄변경 적용합니다.
-            if (CAXM.AxmMotLoadParaAll(szFilePath) != (uint)AXT_FUNC_RESULT.AXT_RT_SUCCESS)
+            catch (Exception e)
             {
-                return;
+                _isInit = false;
             }
-            _isInit = true;
         }
         public void Close()
         {

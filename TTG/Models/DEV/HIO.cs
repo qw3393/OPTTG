@@ -10,9 +10,8 @@ namespace TTG.Models
     {
         public HIO()
         {
-            Initialize();
         }
-        private void Initialize()
+        public void Initialize()
         {
             if (!_isInit)
                 initLibrary();
@@ -25,26 +24,33 @@ namespace TTG.Models
         private void initLibrary()
         {
             _isInit = false;
-            uint uAxlOpen = CAXL.AxlOpen(7);
-            //++ AXL(AjineXtek Library)을 사용가능하게 하고 장착된 보드들을 초기화합니다.
-            if (uAxlOpen == (uint)AXT_FUNC_RESULT.AXT_RT_SUCCESS || uAxlOpen == (uint)AXT_FUNC_RESULT.AXT_RT_OPEN_ALREADY)
+            try
             {
-                uint uStatus = 0;
-                if (CAXD.AxdInfoIsDIOModule(ref uStatus) == (uint)AXT_FUNC_RESULT.AXT_RT_SUCCESS)
+                uint uAxlOpen = CAXL.AxlOpen(7);
+                //++ AXL(AjineXtek Library)을 사용가능하게 하고 장착된 보드들을 초기화합니다.
+                if (uAxlOpen == (uint)AXT_FUNC_RESULT.AXT_RT_SUCCESS || uAxlOpen == (uint)AXT_FUNC_RESULT.AXT_RT_OPEN_ALREADY)
                 {
-                    if ((AXT_EXISTENCE)uStatus == AXT_EXISTENCE.STATUS_EXIST)
+                    uint uStatus = 0;
+                    if (CAXD.AxdInfoIsDIOModule(ref uStatus) == (uint)AXT_FUNC_RESULT.AXT_RT_SUCCESS)
                     {
-                        int nModuleCount = 0;
-                        if (CAXD.AxdInfoGetModuleCount(ref nModuleCount) == (uint)AXT_FUNC_RESULT.AXT_RT_SUCCESS)
+                        if ((AXT_EXISTENCE)uStatus == AXT_EXISTENCE.STATUS_EXIST)
                         {
-                            uint uModuleID = 0;
-                            if ((AXT_MODULE)uModuleID == AXT_MODULE.AXT_SIO_DB32T)
+                            int nModuleCount = 0;
+                            if (CAXD.AxdInfoGetModuleCount(ref nModuleCount) == (uint)AXT_FUNC_RESULT.AXT_RT_SUCCESS)
                             {
-                                _isInit = true;
+                                uint uModuleID = 0;
+                                if ((AXT_MODULE)uModuleID == AXT_MODULE.AXT_SIO_DB32T)
+                                {
+                                    _isInit = true;
+                                }
                             }
                         }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                _isInit = false;
             }
         }
         public void Close()

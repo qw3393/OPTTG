@@ -11,8 +11,8 @@
         <vm:SystemInitViewModel x:Key="VM" />
     </UserControl.Resources>
     <Grid DataContext="{StaticResource VM}">
-        <TextBlock Text="{Binding InitIO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="40" Margin="100,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
-        <TextBlock Text="{Binding InitMot, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="40" Margin="100,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
-        <TextBlock Text="{Binding InitCHR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="40" Margin="100,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
+        <TextBlock Text="{Binding InitIO}" HorizontalAlignment="Left" Height="40" Margin="100,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
+        <TextBlock Text="{Binding InitMot}" HorizontalAlignment="Left" Height="40" Margin="100,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
+        <TextBlock Text="{Binding InitCHR}" HorizontalAlignment="Left" Height="40" Margin="100,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
     </Grid>
 </UserControl>

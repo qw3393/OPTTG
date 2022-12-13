@@ -10,6 +10,8 @@ namespace TTG.Models
 {
     public class MainSystem : ViewModelBase
     {
+        private const bool SW_Simulation = false;
+
         private HIO _hIO;
         public HIO HIO
         {
@@ -28,6 +30,12 @@ namespace TTG.Models
             get { return _hCHR; }
             set { if (_hCHR != value) { _hCHR = value; } OnChanged(""); }
         }
+        private SystemInitViewModel _systemInitViewModel;
+        public SystemInitViewModel SystemInitViewModel
+        {
+            get { return _systemInitViewModel; }
+            set { if (_systemInitViewModel != value) { _systemInitViewModel = value; } OnChanged(""); }
+        }
         public MainSystem()
         {
             Initialize();
@@ -43,7 +51,21 @@ namespace TTG.Models
             _hIO = new HIO();
             _hMot = new HMot();
             _hCHR = new HCHR();
+            _systemInitViewModel = new SystemInitViewModel();
+
+            if (!SW_Simulation)
+            {
+                _hIO.Initialize();
+                _hMot.Initialize();
+                _hCHR.Initialize();
+                _systemInitViewModel.SetText(_hIO.IsInit, _hMot.IsInit, _hCHR.IsInit);
+            }
+            else
+            {
+                _systemInitViewModel.SetText(true , true, true);
+            }
         }
+
         public void Close()
         {
             if (_hIO.IsInit)
