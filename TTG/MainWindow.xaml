@@ -5,13 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TTG"
         xmlns:vw="clr-namespace:TTG.Views"
+        xmlns:vm="clr-namespace:TTG.ViewModels" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="1080" Width="1920"
+        WindowState="Maximized">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:MainOpViewModel}" >
+            <vw:MainOpView></vw:MainOpView>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1800*" />
+            <ColumnDefinition Width="120*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="450*" />
-            <RowDefinition Height="150*" />
+            <RowDefinition Height="800*" />
+            <RowDefinition Height="280*" />
         </Grid.RowDefinitions>
-        <vw:SystemInitView Grid.Row="0" />
+        <ContentPresenter Grid.Row="0" Grid.Column="1" Content="{Binding Path=ContentViewModel}" ></ContentPresenter>
     </Grid>
 </Window>

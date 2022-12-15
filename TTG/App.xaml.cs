@@ -14,6 +14,5 @@ namespace TTG
     /// </summary>
     public partial class App : Application
     {
-        public MainApp _app = new MainApp();
     }
 }
