@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TTG"
         xmlns:vw="clr-namespace:TTG.Views"
+        xmlns:vwma="clr-namespace:TTG.Views.MainView"
         xmlns:vm="clr-namespace:TTG.ViewModels" 
+        xmlns:vmma="clr-namespace:TTG.ViewModels.MainView" 
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920"
         WindowState="Maximized">
@@ -15,6 +17,15 @@
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:MainOpViewModel}" >
             <vw:MainOpView></vw:MainOpView>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmma:PlotViewModel}" >
+            <vwma:PlotView></vwma:PlotView>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmma:ManualViewModel}" >
+            <vwma:ManualView></vwma:ManualView>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmma:SetupViewModel}" >
+            <vwma:SetupView></vwma:SetupView>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -26,6 +37,7 @@
             <RowDefinition Height="800*" />
             <RowDefinition Height="280*" />
         </Grid.RowDefinitions>
-        <ContentPresenter Grid.Row="0" Grid.Column="1" Content="{Binding Path=ContentViewModel}" ></ContentPresenter>
+        <ContentPresenter Grid.Row="0" Grid.Column="0" Content="{Binding Path=ContentMainViewModel}" ></ContentPresenter>
+        <ContentPresenter Grid.Row="0" Grid.Column="1" Content="{Binding Path=ContentOpViewModel}" ></ContentPresenter>
     </Grid>
 </Window>
