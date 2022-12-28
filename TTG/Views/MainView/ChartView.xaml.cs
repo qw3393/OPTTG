@@ -14,14 +14,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace TTG.Views
+namespace TTG.Views.MainView
 {
     /// <summary>
-    /// MainOpView.xaml에 대한 상호 작용 논리
+    /// MainView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MainOpView : UserControl
+    public partial class ChartView : UserControl
     {
-        public MainOpView()
+        public ChartView()
         {
             InitializeComponent();
         }

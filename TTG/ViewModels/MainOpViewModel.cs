@@ -9,13 +9,16 @@ namespace TTG.ViewModels
 {
     public class MainOpViewModel : ViewModelBase
     {
+        private MainSystem _mainSystem;
+        private MainWindowViewModel _mainWindowViewModel;
+
         private RelayCommand _mainCommand;
         public RelayCommand MainCommand
         {
             get
             {
-                //if (_mainCommand == null)
-                //    _mainCommand = new RelayCommand(() => Plot());
+                if (_mainCommand == null)
+                    _mainCommand = new RelayCommand(() => _mainWindowViewModel.ContentChart_Changed());
                 return _mainCommand;
             }
         }
@@ -44,8 +47,8 @@ namespace TTG.ViewModels
         {
             get
             {
-                //if (_setupCommand == null)
-                //    _setupCommand = new RelayCommand(() => Plot());
+                if (_setupCommand == null)
+                    _setupCommand = new RelayCommand(() => _mainWindowViewModel.ContentSetup_Changed());
                 return _setupCommand;
             }
         }
@@ -54,8 +57,8 @@ namespace TTG.ViewModels
         {
             get
             {
-                //if (_manualCommand == null)
-                //    _manualCommand = new RelayCommand(() => Plot());
+                if (_manualCommand == null)
+                    _manualCommand = new RelayCommand(() => _mainWindowViewModel.ContentManual_Changed());
                 return _manualCommand;
             }
         }
@@ -64,13 +67,15 @@ namespace TTG.ViewModels
         {
             get
             {
-                //if (_exitCommand == null)
-                //    _exitCommand = new RelayCommand(() => Plot());
+                if (_exitCommand == null)
+                    _exitCommand = new RelayCommand(() => _mainSystem.Close());
                 return _exitCommand;
             }
         }
-        public MainOpViewModel()
+        public MainOpViewModel(MainSystem mainSystem, MainWindowViewModel mainWindowViewModel)
         {
+            _mainSystem = mainSystem;
+            _mainWindowViewModel = mainWindowViewModel;
         }
     }
 }

@@ -9,7 +9,7 @@
         xmlns:vm="clr-namespace:TTG.ViewModels" 
         xmlns:vmma="clr-namespace:TTG.ViewModels.MainView" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920"
+        Title="TTG APP V0.1DK" Height="1080" Width="1920"
         WindowState="Maximized">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
@@ -18,8 +18,14 @@
         <DataTemplate DataType="{x:Type vm:MainOpViewModel}" >
             <vw:MainOpView></vw:MainOpView>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vmma:PlotViewModel}" >
-            <vwma:PlotView></vwma:PlotView>
+        <DataTemplate DataType="{x:Type vm:MainSectionViewModel}" >
+            <vw:MainSectionView></vw:MainSectionView>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MainLogViewModel}" >
+            <vw:MainLogView></vw:MainLogView>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmma:ChartViewModel}" >
+            <vwma:ChartView></vwma:ChartView>
         </DataTemplate>
         <DataTemplate DataType="{x:Type vmma:ManualViewModel}" >
             <vwma:ManualView></vwma:ManualView>
@@ -28,16 +34,22 @@
             <vwma:SetupView></vwma:SetupView>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1800*" />
-            <ColumnDefinition Width="120*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="800*" />
-            <RowDefinition Height="280*" />
-        </Grid.RowDefinitions>
-        <ContentPresenter Grid.Row="0" Grid.Column="0" Content="{Binding Path=ContentMainViewModel}" ></ContentPresenter>
-        <ContentPresenter Grid.Row="0" Grid.Column="1" Content="{Binding Path=ContentOpViewModel}" ></ContentPresenter>
-    </Grid>
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1800*" />
+                <ColumnDefinition Width="120*" />
+            </Grid.ColumnDefinitions>
+            <ContentPresenter Grid.Column="0" Content="{Binding Path=ContentMainViewModel}" ></ContentPresenter>
+            <ContentPresenter Grid.Column="1" Content="{Binding Path=ContentOpViewModel}" ></ContentPresenter>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1400*" />
+                <ColumnDefinition Width="520*" />
+            </Grid.ColumnDefinitions>
+            <ContentPresenter Grid.Column="0" Content="{Binding Path=ContentSectionViewModel}" ></ContentPresenter>
+            <ContentPresenter Grid.Column="1" Content="{Binding Path=ContentLogViewModel}" ></ContentPresenter>
+        </Grid>
+    </DockPanel>
 </Window>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using TTG.Models;
 using TTG.ViewModels.MainView;
 using TTG.Views;
 using TTG.Views.MainView;
@@ -14,6 +15,8 @@ namespace TTG.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private Dispatcher _dispatcher;
+
+        private MainSystem _mainSystem;
 
         private MainOpViewModel _mainOpViewModel;
         private MainOpView _mainOpView;
@@ -30,14 +33,28 @@ namespace TTG.ViewModels
             get { return _contentOpViewModel; }
             private set { if (_contentOpViewModel != value) { _contentOpViewModel = value; } OnChanged(""); }
         }
+        private MainSectionViewModel _mainSectionViewModel;
+        private MainLogViewModel _mainLogViewModel;
+        private object _contentSectionViewModel;
+        public object ContentSectionViewModel
+        {
+            get { return _contentSectionViewModel; }
+            private set { if (_contentSectionViewModel != value) { _contentSectionViewModel = value; } OnChanged(""); }
+        }
+        private object _contentLogViewModel;
+        public object ContentLogViewModel
+        {
+            get { return _contentLogViewModel; }
+            private set { if (_contentLogViewModel != value) { _contentLogViewModel = value; } OnChanged(""); }
+        }
 
-        private PlotViewModel _plotViewModel;
-        private PlotView _plotView;
-        public System.Windows.Controls.UserControl PlotView
+        private ChartViewModel _chartViewModel;
+        private ChartView _chartView;
+        public System.Windows.Controls.UserControl ChartView
         {
             get
             {
-                return _plotView;
+                return _chartView;
             }
         }
         private ManualViewModel _manualViewModel;
@@ -50,22 +67,34 @@ namespace TTG.ViewModels
         }
         public MainWindowViewModel()
         {
+            _mainSystem = new MainSystem();
             _dispatcher = Application.Current.Dispatcher;
 
-            //_mainOpView = new MainOpView(_dispatcher);
-            _mainOpViewModel = new MainOpViewModel();
-            //_mainOpView.UpdateViewModel(_mainOpViewModel);
+            _mainOpViewModel = new MainOpViewModel(_mainSystem, this);
+            _mainSectionViewModel = new MainSectionViewModel();
+            _mainLogViewModel = new MainLogViewModel();
 
-            //_plotView = new PlotView(_dispatcher);
-            _plotViewModel = new PlotViewModel();
-            //_plotView.UpdateViewModel(_plotViewModel);
-
+            _chartViewModel = new ChartViewModel();
             _manualViewModel = new ManualViewModel();
             _setupViewModel = new SetupViewModel();
-            
 
+            ContentMainViewModel = _chartViewModel;
             ContentOpViewModel = _mainOpViewModel;
-            ContentMainViewModel = _plotViewModel;
+            ContentSectionViewModel = _mainSectionViewModel;
+            ContentLogViewModel = _mainLogViewModel;
+        }
+
+        public void ContentChart_Changed()
+        {
+            this.ContentMainViewModel = _chartViewModel;
+        }
+        public void ContentManual_Changed()
+        {
+            this.ContentMainViewModel = _manualViewModel;
+        }
+        public void ContentSetup_Changed()
+        {
+            this.ContentMainViewModel = _setupViewModel;
         }
     }
 }

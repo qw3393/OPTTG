@@ -8,7 +8,7 @@ using LiveCharts.Configurations;
 
 namespace TTG.ViewModels.MainView
 {
-    public class PlotViewModel : ViewModelBase
+    public class ChartViewModel : ViewModelBase
     {
         private ChartValues<float> _resultChartValues01;
         public ChartValues<float> ResultChartValues01
@@ -204,7 +204,7 @@ namespace TTG.ViewModels.MainView
             }
         }
 
-        public PlotViewModel()
+        public ChartViewModel()
         {
             var r = new Random();
             float[] a01 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TTG.ViewModels;
 
@@ -10,6 +11,17 @@ namespace TTG.Models
 {
     public class MainSystem : ViewModelBase
     {
+        enum State
+        {
+            NONE,
+            IDL,
+            MEA,
+            MANUAL,
+            ENGINEERING,
+            SIMUL,
+            ERROR,
+            RESET
+        }
         private const bool SW_Simulation = false;
 
         private HIO _hIO;
@@ -68,12 +80,17 @@ namespace TTG.Models
 
         public void Close()
         {
-            if (_hIO.IsInit)
-                _hIO.Dispose();
-            if (_hMot.IsInit)
-                _hMot.Dispose();
-            if (_hCHR.IsInit)
-                _hCHR.Dispose();
+            MessageBoxResult mbr = MessageBox.Show("Terminate Program?","TTG App", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                if (_hIO != null && _hIO.IsInit)
+                    _hIO.Dispose();
+                if (_hMot != null && _hMot.IsInit)
+                    _hMot.Dispose();
+                if (_hCHR != null && _hCHR.IsInit)
+                    _hCHR.Dispose();
+                Application.Current.Shutdown();
+            }
         }
         private bool disposedValue = false;
         protected virtual void Dispose(bool disposing)

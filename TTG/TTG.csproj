@@ -92,21 +92,29 @@
     <Compile Include="SupportFiles\AXL.cs" />
     <Compile Include="SupportFiles\AXM.cs" />
     <Compile Include="SupportFiles\CHRDLLFunctionWrapper.cs" />
+    <Compile Include="ViewModels\MainLogViewModel.cs" />
     <Compile Include="ViewModels\MainOpViewModel.cs" />
+    <Compile Include="ViewModels\MainSectionViewModel.cs" />
     <Compile Include="ViewModels\MainView\ManualViewModel.cs" />
-    <Compile Include="ViewModels\MainView\PlotViewModel.cs" />
+    <Compile Include="ViewModels\MainView\ChartViewModel.cs" />
     <Compile Include="ViewModels\MainView\SetupViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\SystemInitViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\MainLogView.xaml.cs">
+      <DependentUpon>MainLogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainOpView.xaml.cs">
       <DependentUpon>MainOpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainSectionView.xaml.cs">
+      <DependentUpon>MainSectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView\ManualView.xaml.cs">
       <DependentUpon>ManualView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainView\PlotView.xaml.cs">
-      <DependentUpon>PlotView.xaml</DependentUpon>
+    <Compile Include="Views\MainView\ChartView.xaml.cs">
+      <DependentUpon>ChartView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView\SetupView.xaml.cs">
       <DependentUpon>SetupView.xaml</DependentUpon>
@@ -114,11 +122,19 @@
     <Compile Include="Views\SystemInitView.xaml.cs">
       <DependentUpon>SystemInitView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\MainLogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainSectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView\ManualView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainView\PlotView.xaml">
+    <Page Include="Views\MainView\ChartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

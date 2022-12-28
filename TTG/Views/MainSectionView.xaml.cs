@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace TTG.Views
 {
     /// <summary>
-    /// MainOpView.xaml에 대한 상호 작용 논리
+    /// MainSection.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MainOpView : UserControl
+    public partial class MainSectionView : UserControl
     {
-        public MainOpView()
+        public MainSectionView()
         {
             InitializeComponent();
         }
