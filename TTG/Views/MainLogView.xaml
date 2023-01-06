@@ -3,10 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TTG.ViewModels"
+             xmlns:mm="clr-namespace:TTG.Models"
              xmlns:local="clr-namespace:TTG.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="280" d:DesignWidth="520" Background="BlanchedAlmond">
-    <Grid>
-        <TextBlock Text="LOG" FontSize="50" HorizontalAlignment="Left" Height="100" Margin="50,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-    </Grid>
+             Height="280" Width="520" Background="#FF141414">
+    <Border Background="#FF333333" CornerRadius="20" Margin="7, 0, 14, 14">
+    <StackPanel>
+        <TextBlock Text="Total Thickness Measurement Gage" Height="36" Width="460" FontFamily="Arail" FontSize="28" HorizontalAlignment="Center" Margin="0, 20, 0, 0" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#8EFFFFFF"/>
+        <TextBlock Text="TTG App V01.00DK" Height="18" Width="460" FontFamily="Arail" FontSize="12" HorizontalAlignment="Center" Margin="0, 0, 0, 0" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#8EFFFFFF"/>
+        <Grid Height="160" Width="460" HorizontalAlignment="Center" Margin="0, 10, 0, 0" VerticalAlignment="Top">
+            <ListBox ItemsSource="{Binding Appender.Notification, Mode=Default}" Background="#8EFFFFFF" FontFamily="Arial" FontSize="14" BorderThickness="3">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Height" Value="20" />
+                        <Setter Property="FontFamily" Value="Arail" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </Grid>
+    </StackPanel>
+    </Border>
 </UserControl>

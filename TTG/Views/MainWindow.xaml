@@ -9,11 +9,8 @@
         xmlns:vm="clr-namespace:TTG.ViewModels" 
         xmlns:vmma="clr-namespace:TTG.ViewModels.MainView" 
         mc:Ignorable="d"
-        Title="TTG APP V0.1DK" Height="1080" Width="1920"
-        WindowState="Maximized">
-    <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>
+        Title="TTG APP DK" Height="1080" Width="1920"
+        WindowState="Maximized" WindowStyle="None" FontFamily="Arial">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:MainOpViewModel}" >
             <vw:MainOpView></vw:MainOpView>

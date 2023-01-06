@@ -5,13 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TTG.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="120" Background="Aquamarine">
-    <DockPanel LastChildFill="False" Margin="5,5,5,5">
-        <Button DockPanel.Dock="Top" Margin="0,10,0,0" Content="MAIN" FontSize="18" Height="100" Command="{Binding Path=MainCommand}"/>
-        <Button DockPanel.Dock="Top" Margin="0,10,0,0" Content="START" FontSize="18" Height="100" Command="{Binding Path=StartCommand}"/>
-        <Button DockPanel.Dock="Top" Margin="0,10,0,0" Content="STOP" FontSize="18" Height="100" Command="{Binding Path=StopCommand}"/>
-        <Button DockPanel.Dock="Top" Margin="0,10,0,0" Content="SETUP" FontSize="18" Height="100" Command="{Binding Path=SetupCommand}"/>
-        <Button DockPanel.Dock="Top" Margin="0,10,0,0" Content="MANUAL" FontSize="18" Height="100" Command="{Binding Path=ManualCommand}"/>
-        <Button DockPanel.Dock="Top" Margin="0,10,0,0" Content="EXIT" FontSize="18" Height="100" Command="{Binding Path=ExitCommand}"/>
+             Height="800" Width="120" Background="#FF141414">
+    <UserControl.Resources>
+        <ControlTemplate TargetType="Button" x:Key="square">
+            <Border x:Name="baseBorder" Background="#FF333333" CornerRadius="20">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="baseBorder" Property="Background" Value="#F02774DA"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style TargetType="Button" x:Key="OpButton">
+            <Setter Property="Template" Value="{StaticResource square}"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel LastChildFill="False" Margin="7,4,14,7">
+        <Button Style="{StaticResource OpButton}" DockPanel.Dock="Top" Margin="0,10,0,0" Content="MAIN" Height="100" Command="{Binding Path=MainCommand}"/>
+        <Button Style="{StaticResource OpButton}" DockPanel.Dock="Top" Margin="0,10,0,0" Content="START" Height="100" Command="{Binding Path=StartCommand}"/>
+        <Button Style="{StaticResource OpButton}" DockPanel.Dock="Top" Margin="0,10,0,0" Content="STOP"  Height="100" Command="{Binding Path=StopCommand}"/>
+        <Button Style="{StaticResource OpButton}" DockPanel.Dock="Top" Margin="0,10,0,0" Content="SETUP" Height="100" Command="{Binding Path=SetupCommand}"/>
+        <Button Style="{StaticResource OpButton}" DockPanel.Dock="Top" Margin="0,10,0,0" Content="MANUAL" Height="100" Command="{Binding Path=ManualCommand}"/>
+        <Button Style="{StaticResource OpButton}" DockPanel.Dock="Top" Margin="0,10,0,0" Content="EXIT" Height="100" Command="{Binding Path=ExitCommand}"/>
     </DockPanel>
 </UserControl>

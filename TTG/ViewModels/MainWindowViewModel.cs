@@ -17,7 +17,11 @@ namespace TTG.ViewModels
         private Dispatcher _dispatcher;
 
         private MainSystem _mainSystem;
-
+        public MainSystem MainSystem
+        {
+            get { return _mainSystem; }
+            set { if (_mainSystem != value) { _mainSystem = value; OnChanged(""); } }
+        }
         private MainOpViewModel _mainOpViewModel;
         private MainOpView _mainOpView;
         public System.Windows.Controls.UserControl MainOpView
@@ -31,7 +35,7 @@ namespace TTG.ViewModels
         public object ContentOpViewModel
         {
             get { return _contentOpViewModel; }
-            private set { if (_contentOpViewModel != value) { _contentOpViewModel = value; } OnChanged(""); }
+            private set { if (_contentOpViewModel != value) { _contentOpViewModel = value; OnChanged(""); } }
         }
         private MainSectionViewModel _mainSectionViewModel;
         private MainLogViewModel _mainLogViewModel;
@@ -39,13 +43,13 @@ namespace TTG.ViewModels
         public object ContentSectionViewModel
         {
             get { return _contentSectionViewModel; }
-            private set { if (_contentSectionViewModel != value) { _contentSectionViewModel = value; } OnChanged(""); }
+            private set { if (_contentSectionViewModel != value) { _contentSectionViewModel = value; OnChanged(""); } }
         }
         private object _contentLogViewModel;
         public object ContentLogViewModel
         {
             get { return _contentLogViewModel; }
-            private set { if (_contentLogViewModel != value) { _contentLogViewModel = value; } OnChanged(""); }
+            private set { if (_contentLogViewModel != value) { _contentLogViewModel = value; OnChanged(""); } }
         }
 
         private ChartViewModel _chartViewModel;
@@ -63,11 +67,11 @@ namespace TTG.ViewModels
         public object ContentMainViewModel
         {
             get { return _contentMainViewModel; }
-            private set { if (_contentMainViewModel != value) { _contentMainViewModel = value; } OnChanged(""); }
+            private set { if (_contentMainViewModel != value) { _contentMainViewModel = value; OnChanged(""); } }
         }
-        public MainWindowViewModel()
+        public MainWindowViewModel(MainSystem mainSystem)
         {
-            _mainSystem = new MainSystem();
+            _mainSystem = mainSystem;
             _dispatcher = Application.Current.Dispatcher;
 
             _mainOpViewModel = new MainOpViewModel(_mainSystem, this);
@@ -82,6 +86,13 @@ namespace TTG.ViewModels
             ContentOpViewModel = _mainOpViewModel;
             ContentSectionViewModel = _mainSectionViewModel;
             ContentLogViewModel = _mainLogViewModel;
+
+            _mainSystem.MainSectionViewModel = _mainSectionViewModel;
+            _mainSystem.SetStateSystem(State.IDL);
+        }
+
+        public void Initialize()
+        {
         }
 
         public void ContentChart_Changed()

@@ -85,6 +85,7 @@
     <Compile Include="Models\DEV\HCHR.cs" />
     <Compile Include="Models\DEV\HIO.cs" />
     <Compile Include="Models\DEV\HMot.cs" />
+    <Compile Include="Models\Log.cs" />
     <Compile Include="Models\MainSystem.cs" />
     <Compile Include="Models\MeasurementEngine.cs" />
     <Compile Include="SupportFiles\AXD.cs" />
@@ -214,6 +215,10 @@
     <Folder Include="ViewModels\MainView\Setup\" />
     <Folder Include="Views\MainView\Manual\" />
     <Folder Include="Views\MainView\Setup\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CheckOk.png" />
+    <Resource Include="Images\CheckErr.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -27,8 +27,8 @@ namespace TTG.ViewModels
         {
             get
             {
-                //if (_startCommand == null)
-                //    _startCommand = new RelayCommand(() => Plot());
+                if (_startCommand == null)
+                    _startCommand = new RelayCommand(() => _mainSystem.Run());
                 return _startCommand;
             }
         }
@@ -37,8 +37,8 @@ namespace TTG.ViewModels
         {
             get
             {
-                //if (_stopCommand == null)
-                //    _stopCommand = new RelayCommand(() => Plot());
+                if (_stopCommand == null)
+                    _stopCommand = new RelayCommand(() => _mainSystem.SetStateSystem(State.IDL));
                 return _stopCommand;
             }
         }

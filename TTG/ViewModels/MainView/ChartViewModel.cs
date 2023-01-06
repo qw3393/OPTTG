@@ -207,30 +207,79 @@ namespace TTG.ViewModels.MainView
         public ChartViewModel()
         {
             var r = new Random();
-            float[] a01 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            ResultChartValues01 = new ChartValues<float>(a01);
-            float[] a02 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            ResultChartValues02 = new ChartValues<float>(a02);
-            float[] a03 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            ResultChartValues03 = new ChartValues<float>(a03);
-            float[] a04 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            ResultChartValues04 = new ChartValues<float>(a04);
-            float[] a05 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            ResultChartValues05 = new ChartValues<float>(a05);
-            float[] a06 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            ResultChartValues06 = new ChartValues<float>(a06);
-            float[] a07 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            LiveChartValues01 = new ChartValues<float>(a07);
-            float[] a08 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            LiveChartValues02 = new ChartValues<float>(a08);
-            float[] a09 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            LiveChartValues03 = new ChartValues<float>(a09);
-            float[] a10 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            LiveChartValues04 = new ChartValues<float>(a10);
-            float[] a11 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            LiveChartValues05 = new ChartValues<float>(a11);
-            float[] a12 = { r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10), r.Next(-10, 10) };
-            LiveChartValues06 = new ChartValues<float>(a12);
+            float[] fData = new float[50];
+            float[] fData2 = new float[10];
+            for (int i = 0; i< fData.Length; i++) 
+            {
+                fData[i] = r.Next(-4, 4) + 500;
+            }
+            ResultChartValues01 = new ChartValues<float>(fData);
+
+            for (int i = 0; i < fData.Length; i++)
+            {
+                fData[i] = r.Next(-4, 4) + 500;
+            }
+            ResultChartValues02 = new ChartValues<float>(fData);
+
+            for (int i = 0; i < fData.Length; i++)
+            {
+                fData[i] = r.Next(-4, 4) + 500;
+            }
+            ResultChartValues03 = new ChartValues<float>(fData);
+
+            for (int i = 0; i < fData.Length; i++)
+            {
+                fData[i] = r.Next(-4, 4) + 500;
+            }
+            ResultChartValues04 = new ChartValues<float>(fData);
+
+            for (int i = 0; i < fData.Length; i++)
+            {
+                fData[i] = r.Next(-4, 4) + 500;
+            }
+            ResultChartValues05 = new ChartValues<float>(fData);
+
+            for (int i = 0; i < fData.Length; i++)
+            {
+                fData[i] = r.Next(-4, 4) + 500;
+            }
+            ResultChartValues06 = new ChartValues<float>(fData);
+
+            for (int i = 0; i < fData2.Length; i++)
+            {
+                fData2[i] = r.Next(-4, 4) + 500;
+            }
+            LiveChartValues01 = new ChartValues<float>(fData2);
+
+            for (int i = 0; i < fData2.Length; i++)
+            {
+                fData2[i] = r.Next(-4, 4) + 500;
+            }
+            LiveChartValues02 = new ChartValues<float>(fData2);
+
+            for (int i = 0; i < fData2.Length; i++)
+            {
+                fData2[i] = r.Next(-4, 4) + 500;
+            }
+            LiveChartValues03 = new ChartValues<float>(fData2);
+
+            for (int i = 0; i < fData2.Length; i++)
+            {
+                fData2[i] = r.Next(-4, 4) + 500;
+            }
+            LiveChartValues04 = new ChartValues<float>(fData2);
+
+            for (int i = 0; i < fData2.Length; i++)
+            {
+                fData2[i] = r.Next(-4, 4) + 500;
+            }
+            LiveChartValues05 = new ChartValues<float>(fData2);
+
+            for (int i = 0; i < fData2.Length; i++)
+            {
+                fData2[i] = r.Next(-4, 4) + 500;
+            }
+            LiveChartValues06 = new ChartValues<float>(fData2);
         }
     }
 }

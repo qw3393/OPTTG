@@ -5,8 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TTG.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="280" d:DesignWidth="1400" Background="DarkGreen">
-    <Grid>
-        <TextBlock Text="STATUS" FontSize="50" HorizontalAlignment="Left" Height="100" Margin="100,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
-    </Grid>
+             Height="280" Width="1400" Background="#FF141414">
+    <Border Background="#FF333333" CornerRadius="20" Margin="14, 0, 7, 14">
+        <Grid>
+            <TextBlock Text="STATUS : " FontSize="50" HorizontalAlignment="Left" Margin="100,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="white"/>
+            <TextBlock Text="{Binding StateText}" FontSize="50" HorizontalAlignment="Left" Margin="320,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="white"/>
+        </Grid>
+    </Border>
 </UserControl>

@@ -1,18 +1,30 @@
-﻿<UserControl x:Class="TTG.Views.SystemInitView"
+﻿<Window x:Class="TTG.Views.SystemInitView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TTG.Views"
              xmlns:vm="clr-namespace:TTG.ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="600" Background="RosyBrown">
-    <UserControl.Resources>
-        <vm:SystemInitViewModel x:Key="VM" />
-    </UserControl.Resources>
-    <Grid DataContext="{StaticResource VM}">
-        <TextBlock Text="{Binding InitIO}" HorizontalAlignment="Left" Height="40" Margin="100,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
-        <TextBlock Text="{Binding InitMot}" HorizontalAlignment="Left" Height="40" Margin="100,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
-        <TextBlock Text="{Binding InitCHR}" HorizontalAlignment="Left" Height="40" Margin="100,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
+             mc:Ignorable="d" Background="#FF232323" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Width="400" Height="300" FontFamily="Arial" Title="TTG APP Initialize" WindowStyle="None" FontSize="14">
+    <Grid Margin="50, 50, 50, 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="80*" />
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Source="{Binding InitIO_Check}" HorizontalAlignment="Left" Height="20" Margin="40, -2, 0, 0" VerticalAlignment="Top" Width="30"></Image>
+        <TextBlock Grid.Row="0" Text="{Binding InitIO}" HorizontalAlignment="Left" Height="30" Margin="70,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Foreground="White"/>
+        <Image Grid.Row="1" Source="{Binding InitMot_Check}" HorizontalAlignment="Left" Height="20" Margin="40, -2, 0, 0" VerticalAlignment="Top" Width="30"></Image>
+        <TextBlock Grid.Row="1" Text="{Binding InitMot}" HorizontalAlignment="Left" Height="30" Margin="70,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Foreground="White"/>
+        <Image Grid.Row="2" Source="{Binding InitCHR_Check}" HorizontalAlignment="Left" Height="20" Margin="40, -2, 0, 0" VerticalAlignment="Top" Width="30"></Image>
+        <TextBlock Grid.Row="2" Text="{Binding InitCHR}" HorizontalAlignment="Left" Height="30" Margin="70,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Foreground="White"/>
+        <Image Grid.Row="3" Source="{Binding InitCFG_Check}" HorizontalAlignment="Left" Height="20" Margin="40, -2, 0, 0" VerticalAlignment="Top" Width="30"></Image>
+        <TextBlock Grid.Row="3" Text="{Binding InitCFG}" HorizontalAlignment="Left" Height="30" Margin="70,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Foreground="White"/>
+        <Image Grid.Row="4" Source="{Binding InitTTG_Check}" HorizontalAlignment="Left" Height="20" Margin="40, -2, 0, 0" VerticalAlignment="Top" Width="30"></Image>
+        <TextBlock Grid.Row="4" Text="{Binding InitTTG}" HorizontalAlignment="Left" Height="30" Margin="70,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Foreground="White"/>
+        <Button Grid.Row="5" Content="ok" HorizontalAlignment="Center" Height="30" Margin="0,20,0,0" VerticalAlignment="Top" Width="80" Command="{Binding Path=StartUpCommand}" IsEnabled="{Binding StartUpIsEnabled}"/>
     </Grid>
-</UserControl>
+</Window>

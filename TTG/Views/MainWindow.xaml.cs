@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using TTG.ViewModels;
 
 namespace TTG
 {
@@ -21,9 +22,21 @@ namespace TTG
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel _mainWindowViewModel;
+        private Dispatcher _dispatcher;
         public MainWindow()
         {
             InitializeComponent();
+            _dispatcher = Application.Current.Dispatcher;
+        }
+        public void SetViewModel(MainWindowViewModel mainWindowViewModel)
+        {
+            _dispatcher.Invoke(delegate () { this.SetDataContext(mainWindowViewModel); });
+        }
+        public void SetDataContext(MainWindowViewModel mainWindowViewModel)
+        {
+            _mainWindowViewModel = mainWindowViewModel;
+            this.DataContext = mainWindowViewModel;
         }
     }
 }

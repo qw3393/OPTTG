@@ -1,29 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Input;
 using TTG.ViewModels;
 
 namespace TTG.Models
 {
+    public enum State
+    {
+        NONE,
+        IDL,
+        MEA,
+        MANUAL,
+        ENGINEERING,
+        SIMUL,
+        ERROR,
+        RESET
+    }
+
     public class MainSystem : ViewModelBase
     {
-        enum State
+        private bool _sw_Simulation;
+        public bool SW_Simulation
         {
-            NONE,
-            IDL,
-            MEA,
-            MANUAL,
-            ENGINEERING,
-            SIMUL,
-            ERROR,
-            RESET
+            get { return _sw_Simulation; }
         }
-        private const bool SW_Simulation = false;
-
         private HIO _hIO;
         public HIO HIO
         {
@@ -42,15 +49,17 @@ namespace TTG.Models
             get { return _hCHR; }
             set { if (_hCHR != value) { _hCHR = value; } OnChanged(""); }
         }
-        private SystemInitViewModel _systemInitViewModel;
-        public SystemInitViewModel SystemInitViewModel
+        private State _stateSystem;
+        private MainSectionViewModel _mainSectionViewModel;
+        public MainSectionViewModel MainSectionViewModel
         {
-            get { return _systemInitViewModel; }
-            set { if (_systemInitViewModel != value) { _systemInitViewModel = value; } OnChanged(""); }
+            get { return _mainSectionViewModel; }
+            set { if (_mainSectionViewModel != value) { _mainSectionViewModel = value; OnChanged(""); } }
         }
+        private MeasurementEngine _measurementEngine;
         public MainSystem()
         {
-            Initialize();
+            //Initialize();
         }
 
         ~MainSystem()
@@ -58,24 +67,27 @@ namespace TTG.Models
             Dispose(false);
         }
 
-        private void Initialize()
+        public void Initialize()
         {
             _hIO = new HIO();
             _hMot = new HMot();
             _hCHR = new HCHR();
-            _systemInitViewModel = new SystemInitViewModel();
 
-            if (!SW_Simulation)
-            {
-                _hIO.Initialize();
-                _hMot.Initialize();
-                _hCHR.Initialize();
-                _systemInitViewModel.SetText(_hIO.IsInit, _hMot.IsInit, _hCHR.IsInit);
-            }
-            else
-            {
-                _systemInitViewModel.SetText(true , true, true);
-            }
+            _sw_Simulation = Convert.ToBoolean(ConfigurationManager.AppSettings["bsimul"]);
+            _measurementEngine = new MeasurementEngine(this);
+        }
+        public void Run()
+        {
+            _measurementEngine.StartMeasurementEngine();
+        }
+        public void SetStateSystem(State state)
+        {
+            _stateSystem = state;
+            _mainSectionViewModel.SetTextState(state);
+        }
+        public State GetStateSystem()
+        {
+            return _stateSystem;
         }
 
         public void Close()
